@@ -58,13 +58,14 @@ collections:
           - label: "Promociones"
             name: "promociones"
             widget: "list"
-            summary: "{{fields.producto}} — {{fields.precioAhora}}"
+            summary: "{{fields.producto}}{{fields.categoria}}"
             fields:
-              - { label: "Categoría", name: "categoria", widget: "string" }
-              - { label: "Producto", name: "producto", widget: "string" }
-              - { label: "Precio anterior (dejar 0 si no hay descuento previo)", name: "precioAntes", widget: "number", default: 0, value_type: "int" }
-              - { label: "Precio actual", name: "precioAhora", widget: "number", value_type: "int" }
-              - { label: "Vigencia (ej: Válido hasta el domingo)", name: "vigencia", widget: "string" }
+              - { label: "Imagen de la promo (opcional — si la subís, se muestra la imagen en vez del texto)", name: "imagen", widget: "image", required: false, hint: "Ideal: el mismo flyer que usás en Instagram." }
+              - { label: "Categoría", name: "categoria", widget: "string", required: false }
+              - { label: "Producto", name: "producto", widget: "string", required: false }
+              - { label: "Precio anterior (dejar 0 si no hay descuento previo)", name: "precioAntes", widget: "number", default: 0, value_type: "int", required: false }
+              - { label: "Precio actual", name: "precioAhora", widget: "number", value_type: "int", required: false }
+              - { label: "Vigencia (ej: Válido hasta el domingo)", name: "vigencia", widget: "string", required: false }
 
           - label: "Categorías del catálogo"
             name: "categorias"
