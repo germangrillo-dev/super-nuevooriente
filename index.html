@@ -77,6 +77,50 @@
     .nav-toggle{display:block;}
   }
 
+  /* ---------- CARRUSEL ---------- */
+  .slider{
+    position:relative;background:var(--ink);overflow:hidden;
+    aspect-ratio:16/6;max-height:460px;
+  }
+  .slider-track{
+    display:flex;height:100%;transition:transform .6s ease;
+  }
+  .slider-track .slide{
+    flex:0 0 100%;height:100%;position:relative;
+  }
+  .slider-track .slide img{
+    width:100%;height:100%;object-fit:cover;
+  }
+  .slider-track .slide .cap{
+    position:absolute;left:0;right:0;bottom:0;
+    padding:18px 28px;
+    background:linear-gradient(0deg, rgba(0,0,0,.55), transparent);
+    color:#fff;font-weight:700;font-size:1rem;
+  }
+  .slider-arrow{
+    position:absolute;top:50%;transform:translateY(-50%);
+    width:42px;height:42px;border-radius:50%;border:0;
+    background:rgba(255,255,255,.85);color:var(--green-deep);
+    font-size:1.1rem;cursor:pointer;z-index:5;
+    display:flex;align-items:center;justify-content:center;
+    transition:background .2s;
+  }
+  .slider-arrow:hover{background:#fff;}
+  .slider-arrow.prev{left:16px;}
+  .slider-arrow.next{right:16px;}
+  .slider-dots{
+    position:absolute;bottom:14px;left:50%;transform:translateX(-50%);
+    display:flex;gap:8px;z-index:5;
+  }
+  .slider-dots button{
+    width:9px;height:9px;border-radius:50%;border:0;padding:0;
+    background:rgba(255,255,255,.5);cursor:pointer;transition:background .2s, width .2s;
+  }
+  .slider-dots button.active{background:#fff;width:22px;border-radius:5px;}
+  @media (max-width:700px){
+    .slider{aspect-ratio:4/5;max-height:520px;}
+  }
+
   /* ---------- HERO ---------- */
   .hero{
     background:linear-gradient(160deg, var(--green-deep) 0%, var(--green-mid) 100%);
@@ -209,6 +253,13 @@
 
 <main id="main">
 
+  <section class="slider" id="slider" aria-label="Promociones destacadas">
+    <div class="slider-track" id="sliderTrack"></div>
+    <button class="slider-arrow prev" id="sliderPrev" aria-label="Anterior">‹</button>
+    <button class="slider-arrow next" id="sliderNext" aria-label="Siguiente">›</button>
+    <div class="slider-dots" id="sliderDots"></div>
+  </section>
+
   <section class="hero">
     <div class="container hero-grid">
       <div>
@@ -301,6 +352,40 @@
   }));
 
   const fmt = n => n ? '$' + n.toLocaleString('es-AR') : '';
+
+  // ---- Carrusel ----
+  (function initSlider(){
+    const slides = DATOS.slides || [];
+    if(!slides.length){
+      document.getElementById('slider').style.display = 'none';
+    } else {
+      const track = document.getElementById('sliderTrack');
+      const dotsWrap = document.getElementById('sliderDots');
+      track.innerHTML = slides.map(s => `
+        <div class="slide">
+          <img src="${s.imagen}" alt="${s.alt || ''}">
+          ${s.texto ? `<div class="cap">${s.texto}</div>` : ''}
+        </div>
+      `).join('');
+      dotsWrap.innerHTML = slides.map((_, i) => `<button data-i="${i}" class="${i===0?'active':''}" aria-label="Ir a la imagen ${i+1}"></button>`).join('');
+
+      let current = 0;
+      const dots = [...dotsWrap.querySelectorAll('button')];
+      function go(i){
+        current = (i + slides.length) % slides.length;
+        track.style.transform = `translateX(-${current * 100}%)`;
+        dots.forEach((d, idx) => d.classList.toggle('active', idx === current));
+      }
+      document.getElementById('sliderPrev').addEventListener('click', () => go(current - 1));
+      document.getElementById('sliderNext').addEventListener('click', () => go(current + 1));
+      dots.forEach(d => d.addEventListener('click', () => go(Number(d.dataset.i))));
+
+      let auto = setInterval(() => go(current + 1), 4500);
+      const sliderEl = document.getElementById('slider');
+      sliderEl.addEventListener('mouseenter', () => clearInterval(auto));
+      sliderEl.addEventListener('mouseleave', () => auto = setInterval(() => go(current + 1), 4500));
+    }
+  })();
 
   // ---- Medios de pago ----
   document.getElementById('paymentsList').innerHTML = DATOS.mediosDePago.map(p => `

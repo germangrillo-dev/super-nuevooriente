@@ -21,6 +21,17 @@ const DATOS = {
     facebook: "#"
   },
 
+  // ---- Carrusel de imágenes (arriba de todo, deslizante) ----
+  // Poné tus imágenes reales dentro de la carpeta assets/slider/
+  // (podés usar tus flyers/banners de Instagram tal cual).
+  // "texto" es opcional: un cartelito que aparece abajo de la imagen. Dejalo "" si no querés texto.
+  // Para agregar o sacar imágenes, sumá o borrá bloques { } dentro de los corchetes [ ].
+  slides: [
+    { imagen: "assets/slider/slide-1.jpg", alt: "Súper Ofertas: Harina, Puré de tomate y Polenta", texto: "" },
+    { imagen: "assets/slider/slide-2.jpg", alt: "Promoción 2", texto: "" },
+    { imagen: "assets/slider/slide-3.jpg", alt: "Promoción 3", texto: "" }
+  ],
+
   // ---- Medios de pago (se muestran como chips en la sección de promos) ----
   mediosDePago: [
     { plan: "Plan Z", detalle: "4 cuotas sin interés" },
