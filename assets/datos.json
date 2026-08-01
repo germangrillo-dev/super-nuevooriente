@@ -10,14 +10,35 @@
     "catalogoPdf": ""
   },
   "slides": [
-    { "imagen": "assets/slider/slide-1.jpg", "alt": "Súper Ofertas: Harina, Puré de tomate y Polenta", "texto": "" },
-    { "imagen": "assets/slider/slide-2.jpg", "alt": "Promoción 2", "texto": "" },
-    { "imagen": "assets/slider/slide-3.jpg", "alt": "Promoción 3", "texto": "" }
+    {
+      "imagen": "assets/slider/slide-1.jpg",
+      "alt": "Súper Ofertas: Harina, Puré de tomate y Polenta",
+      "texto": ""
+    },
+    {
+      "imagen": "assets/slider/slide-2.jpg",
+      "alt": "Promoción 2",
+      "texto": ""
+    },
+    {
+      "imagen": "assets/slider/slide-3.jpg",
+      "alt": "Promoción 3",
+      "texto": ""
+    }
   ],
   "mediosDePago": [
-    { "plan": "Plan Z", "detalle": "4 cuotas sin interés" },
-    { "plan": "Tarjeta Naranja", "detalle": "1 y 4 cuotas sin interés" },
-    { "plan": "Sucrédito Única", "detalle": "3 cuotas sin interés" }
+    {
+      "plan": "Plan Z",
+      "detalle": "4 cuotas sin interés"
+    },
+    {
+      "plan": "Tarjeta Naranja",
+      "detalle": "1 y 4 cuotas sin interés"
+    },
+    {
+      "plan": "Sucrédito Única",
+      "detalle": "3 cuotas sin interés"
+    }
   ],
   "sucursales": [
     {
@@ -39,29 +60,62 @@
       "producto": "Harina Favorita 000 1kg",
       "precioAntes": 0,
       "precioAhora": 1200,
-      "vigencia": "Súper ofertas"
+      "vigencia": "Súper ofertas",
+      "imagen": "/assets/uploads/promo1.png"
     },
     {
       "categoria": "Almacén",
       "producto": "Puré de tomate Noel 530gr",
       "precioAntes": 0,
       "precioAhora": 1000,
-      "vigencia": "Súper ofertas"
+      "vigencia": "Súper ofertas",
+      "imagen": "/assets/uploads/promo2.png"
     },
     {
       "categoria": "Almacén",
       "producto": "Polenta Española 500gr",
       "precioAntes": 0,
       "precioAhora": 800,
-      "vigencia": "Súper ofertas"
+      "vigencia": "Súper ofertas",
+      "imagen": "/assets/uploads/promo3.png"
     }
   ],
   "categorias": [
-    { "emoji": "🧃", "nombre": "Almacén", "desc": "Fideos, arroz, aceites, conservas y más.", "link": "#" },
-    { "emoji": "🥬", "nombre": "Verdulería", "desc": "Fruta y verdura fresca todos los días.", "link": "#" },
-    { "emoji": "🥩", "nombre": "Carnicería", "desc": "Cortes vacunos, pollo y cerdo.", "link": "#" },
-    { "emoji": "🧴", "nombre": "Limpieza", "desc": "Todo para la casa, de la cocina al baño.", "link": "#" },
-    { "emoji": "🧼", "nombre": "Perfumería", "desc": "Cuidado personal e higiene diaria.", "link": "#" },
-    { "emoji": "🥤", "nombre": "Bebidas", "desc": "Gaseosas, jugos, aguas y cervezas.", "link": "#" }
+    {
+      "emoji": "🧃",
+      "nombre": "Almacén",
+      "desc": "Fideos, arroz, aceites, conservas y más.",
+      "link": "#"
+    },
+    {
+      "emoji": "🥬",
+      "nombre": "Verdulería",
+      "desc": "Fruta y verdura fresca todos los días.",
+      "link": "#"
+    },
+    {
+      "emoji": "🥩",
+      "nombre": "Carnicería",
+      "desc": "Cortes vacunos, pollo y cerdo.",
+      "link": "#"
+    },
+    {
+      "emoji": "🧴",
+      "nombre": "Limpieza",
+      "desc": "Todo para la casa, de la cocina al baño.",
+      "link": "#"
+    },
+    {
+      "emoji": "🧼",
+      "nombre": "Perfumería",
+      "desc": "Cuidado personal e higiene diaria.",
+      "link": "#"
+    },
+    {
+      "emoji": "🥤",
+      "nombre": "Bebidas",
+      "desc": "Gaseosas, jugos, aguas y cervezas.",
+      "link": "#"
+    }
   ]
 }
