@@ -79,8 +79,8 @@
 
   /* ---------- CARRUSEL ---------- */
   .slider{
-    position:relative;background:var(--ink);overflow:hidden;
-    aspect-ratio:16/6;max-height:460px;
+    position:relative;background:var(--green-deep);overflow:hidden;
+    aspect-ratio:16/9;max-height:560px;
   }
   .slider-track{
     display:flex;height:100%;transition:transform .6s ease;
@@ -89,7 +89,12 @@
     flex:0 0 100%;height:100%;position:relative;
   }
   .slider-track .slide img{
-    width:100%;height:100%;object-fit:cover;
+    position:relative;z-index:1;
+    width:100%;height:100%;object-fit:contain;
+  }
+  .slider-track .slide .bg{
+    position:absolute;inset:0;background-size:cover;background-position:center;
+    filter:blur(22px) brightness(.9) saturate(1.2);transform:scale(1.15);z-index:0;
   }
   .slider-track .slide .cap{
     position:absolute;left:0;right:0;bottom:0;
@@ -283,7 +288,7 @@
       <div class="section-head">
         <p class="eyebrow">Ofertas de la semana</p>
         <h2 class="section-title">Promociones</h2>
-        <p class="lead">Se actualizan editando <code>assets/datos.js</code> — no hace falta tocar el diseño.</p>
+        <p class="lead">Se actualizan desde el panel de administración — no hace falta tocar código.</p>
       </div>
       <div class="promo-grid" id="promoGrid"></div>
     </div>
@@ -337,8 +342,10 @@
 
 <a class="wa-float" id="waFloat" href="#" aria-label="Escribinos por WhatsApp" target="_blank" rel="noopener">💬</a>
 
-<script src="assets/datos.js"></script>
 <script>
+async function iniciarSitio(){
+  const DATOS = await fetch('assets/datos.json').then(r => r.json());
+
   // ---- menú móvil ----
   const toggle = document.getElementById('navToggle');
   const list = document.getElementById('navList');
@@ -363,6 +370,7 @@
       const dotsWrap = document.getElementById('sliderDots');
       track.innerHTML = slides.map(s => `
         <div class="slide">
+          <div class="bg" style="background-image:url('${s.imagen}')"></div>
           <img src="${s.imagen}" alt="${s.alt || ''}">
           ${s.texto ? `<div class="cap">${s.texto}</div>` : ''}
         </div>
@@ -403,7 +411,7 @@
       </div>
       <p class="valid">${p.vigencia}</p>
     </div>
-  `).join('') + (DATOS.promociones.every(p => !p.precioAhora) ? '<p class="empty-note">Estas son promos de ejemplo. Cargá las reales en assets/datos.js → promociones.</p>' : '');
+  `).join('') + (DATOS.promociones.every(p => !p.precioAhora) ? '<p class="empty-note">Estas son promos de ejemplo. Cargalas desde el panel de administración.</p>' : '');
 
   // ---- Catálogo ----
   document.getElementById('catGrid').innerHTML = DATOS.categorias.map(c => `
@@ -440,6 +448,15 @@
   `;
   document.getElementById('bottomBar').textContent = `© ${new Date().getFullYear()} ${n.nombre}. Todos los derechos reservados.`;
   document.getElementById('waFloat').href = `https://wa.me/${n.telefonoWsp1}`;
+
+  // ---- Catálogo PDF (si el panel de administración cargó uno) ----
+  if(n.catalogoPdf){
+    const li = document.createElement('li');
+    li.innerHTML = `<a href="${n.catalogoPdf}" target="_blank" rel="noopener">📄 Descargar catálogo PDF</a>`;
+    document.querySelector('footer .footer-grid > div:nth-child(2) ul').appendChild(li);
+  }
+}
+iniciarSitio();
 </script>
 
 </body>
