@@ -16,12 +16,12 @@
       "texto": ""
     },
     {
-      "imagen": "assets/slider/slide-2.jpg",
+      "imagen": "/assets/uploads/promo2.png",
       "alt": "Promoción 2",
       "texto": ""
     },
     {
-      "imagen": "assets/slider/slide-3.jpg",
+      "imagen": "/assets/uploads/promo3.png",
       "alt": "Promoción 3",
       "texto": ""
     }
