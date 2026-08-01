@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nuevo Oriente Supermercados</title>
+<meta name="description" content="Nuevo Oriente Supermercados — Promociones, catálogo y sucursales en Santiago del Estero.">
+<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Work+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green-deep:#1E6B36;
+    --green-mid:#2E8B4F;
+    --green-pale:#E9F3EA;
+    --orange:#E85B2C;
+    --orange-dark:#C74A20;
+    --paper:#FBFAF6;
+    --ink:#20261F;
+    --line:#DDE3D6;
+    --radius-s:8px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Work Sans',sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.5;
+  }
+  h1,h2,h3,.display{
+    font-family:'Poppins',sans-serif;
+    font-weight:800;
+  }
+  .mono{font-family:'Space Mono',monospace;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .container{max-width:1140px;margin:0 auto;padding:0 24px;}
+
+  .skip-link{
+    position:absolute;top:-40px;left:0;background:var(--green-deep);color:#fff;
+    padding:10px 16px;z-index:200;transition:top .2s;
+  }
+  .skip-link:focus{top:0;}
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:sticky;top:0;z-index:100;
+    background:#fff;
+    border-bottom:1px solid var(--line);
+  }
+  .nav-wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:12px 0;
+  }
+  .brand{display:flex;align-items:center;gap:10px;padding:4px 0;}
+  .brand img{height:64px;width:auto;}
+  nav ul{display:flex;gap:26px;list-style:none;}
+  nav a{
+    font-weight:600;font-size:0.92rem;color:var(--ink);
+    padding:6px 2px;border-bottom:2px solid transparent;
+    transition:border-color .2s, color .2s;
+  }
+  nav a:hover, nav a:focus{border-color:var(--orange);color:var(--orange-dark);}
+  .nav-toggle{display:none;background:none;border:0;color:var(--green-deep);font-size:1.7rem;cursor:pointer;}
+
+  @media (max-width:860px){
+    nav ul{
+      position:absolute;top:100%;left:0;right:0;background:#fff;
+      flex-direction:column;gap:0;max-height:0;overflow:hidden;
+      transition:max-height .3s ease;border-bottom:1px solid var(--line);
+    }
+    nav ul.open{max-height:400px;}
+    nav ul li{border-top:1px solid var(--line);}
+    nav a{display:block;padding:14px 24px;}
+    .nav-toggle{display:block;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:linear-gradient(160deg, var(--green-deep) 0%, var(--green-mid) 100%);
+    color:#fff;padding:70px 0 84px;position:relative;overflow:hidden;
+  }
+  .hero::after{
+    content:"🌴";position:absolute;right:-20px;bottom:-40px;font-size:14rem;opacity:.08;
+  }
+  .hero-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:48px;align-items:center;position:relative;}
+  .hero h1{font-size:clamp(2.2rem,4.6vw,3.3rem);line-height:1.1;color:#fff;}
+  .hero h1 span{color:var(--orange);}
+  .hero p{margin-top:16px;font-size:1.08rem;max-width:46ch;color:#E3F0E6;}
+  .cta-row{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap;}
+  .btn{
+    display:inline-block;padding:13px 26px;border-radius:var(--radius-s);
+    font-weight:700;font-size:0.95rem;border:2px solid transparent;cursor:pointer;
+    transition:transform .15s ease, background .2s;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-orange{background:var(--orange);color:#fff;}
+  .btn-orange:hover{background:var(--orange-dark);}
+  .btn-outline{border-color:#fff;color:#fff;}
+  .btn-outline:hover{background:rgba(255,255,255,.12);}
+
+  .hero-card{
+    background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);
+    border-radius:14px;padding:22px;backdrop-filter:blur(2px);
+  }
+  .hero-card .k{font-family:'Space Mono',monospace;font-size:.75rem;text-transform:uppercase;letter-spacing:1px;color:#CFE9D6;}
+  .payments{display:flex;flex-direction:column;gap:10px;margin-top:12px;}
+  .payment-chip{
+    background:rgba(255,255,255,.92);color:var(--green-deep);border-radius:8px;
+    padding:10px 14px;display:flex;justify-content:space-between;align-items:center;font-size:.88rem;font-weight:700;
+  }
+  .payment-chip span.d{font-weight:500;color:#3F4A3D;}
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{padding:68px 0;}
+  .eyebrow{
+    font-family:'Space Mono',monospace;font-size:.78rem;text-transform:uppercase;
+    letter-spacing:1.5px;color:var(--orange-dark);font-weight:700;
+  }
+  .section-title{font-size:clamp(1.6rem,3.2vw,2.2rem);margin-top:8px;color:var(--green-deep);}
+  .section-head{margin-bottom:36px;max-width:640px;}
+  .section-head p.lead{margin-top:12px;color:#4B5346;font-size:1rem;}
+  .alt-bg{background:var(--green-pale);}
+
+  /* ---------- PROMOCIONES ---------- */
+  .promo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px;}
+  .ticket{
+    position:relative;background:#fff;border:2px dashed var(--line);border-radius:6px;
+    padding:22px 20px 24px;
+  }
+  .ticket .tag-cat{font-family:'Space Mono',monospace;font-size:.72rem;color:var(--green-mid);text-transform:uppercase;font-weight:700;letter-spacing:.5px;}
+  .ticket h3{font-family:'Work Sans';font-weight:700;font-size:1.08rem;margin:8px 0 12px;color:var(--ink);}
+  .ticket .price-row{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;}
+  .ticket .old-price{font-family:'Space Mono',monospace;color:#9A9A8C;text-decoration:line-through;font-size:.92rem;}
+  .ticket .new-price{font-family:'Poppins';font-weight:800;font-size:1.7rem;color:var(--orange-dark);}
+  .ticket .valid{margin-top:12px;font-size:.78rem;color:#7A8073;}
+
+  /* ---------- CATALOGO ---------- */
+  .cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;}
+  .cat-card{
+    background:#fff;border:1px solid var(--line);border-radius:12px;padding:26px 20px;
+    transition:box-shadow .2s, transform .2s;
+  }
+  .cat-card:hover{box-shadow:0 10px 24px rgba(30,107,54,.12);transform:translateY(-3px);}
+  .cat-card .emoji{font-size:2rem;}
+  .cat-card h3{font-family:'Work Sans';font-weight:800;font-size:1.02rem;margin:12px 0 6px;color:var(--green-deep);}
+  .cat-card p{font-size:.88rem;color:#5B6152;margin-bottom:14px;}
+  .cat-card .link{font-size:.83rem;font-weight:700;color:var(--orange-dark);}
+
+  /* ---------- SUCURSALES ---------- */
+  .branch-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;}
+  .branch-card{background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line);}
+  .branch-card .strip{height:8px;background:repeating-linear-gradient(90deg,var(--orange) 0 14px, var(--green-mid) 14px 28px);}
+  .branch-card .body{padding:22px;}
+  .branch-card h3{font-family:'Work Sans';font-weight:800;font-size:1.08rem;color:var(--green-deep);}
+  .branch-card .row{display:flex;gap:10px;margin-top:10px;font-size:.92rem;color:#3E4536;}
+
+  /* ---------- CONTACTO / FOOTER ---------- */
+  footer{background:var(--green-deep);color:#EDF2E8;padding:56px 0 0;}
+  .footer-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:40px;padding-bottom:36px;}
+  footer h3{font-size:.98rem;color:var(--orange);text-transform:uppercase;letter-spacing:.5px;margin-bottom:16px;font-family:'Work Sans';font-weight:700;}
+  footer p, footer li{font-size:.92rem;color:#CFE0D2;}
+  footer ul{list-style:none;}
+  footer li{margin-bottom:8px;}
+  .social-row{display:flex;gap:12px;margin-top:14px;}
+  .social-row a{
+    width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.1);
+    display:flex;align-items:center;justify-content:center;font-size:.95rem;transition:background .2s;
+  }
+  .social-row a:hover{background:var(--orange);}
+  .bottom-bar{border-top:1px solid rgba(255,255,255,.15);padding:18px 0;text-align:center;font-size:.8rem;color:#AFC4AE;}
+
+  .wa-float{
+    position:fixed;bottom:24px;right:24px;z-index:150;
+    background:#25D366;color:#fff;width:58px;height:58px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;font-size:1.6rem;
+    box-shadow:0 8px 20px rgba(0,0,0,.25);
+  }
+
+  .empty-note{
+    font-size:.85rem;color:#8A9184;background:var(--green-pale);
+    border:1px dashed var(--line);padding:14px 16px;border-radius:8px;margin-top:8px;
+  }
+
+  @media (max-width:860px){
+    .hero-grid, .footer-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Saltar al contenido</a>
+
+<header>
+  <div class="container nav-wrap">
+    <a href="#" class="brand"><img src="assets/logo.png" alt="Nuevo Oriente Supermercados"></a>
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false" id="navToggle">☰</button>
+    <nav>
+      <ul id="navList">
+        <li><a href="#promociones">Promociones</a></li>
+        <li><a href="#catalogo">Catálogo</a></li>
+        <li><a href="#sucursales">Sucursales</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow" style="color:#FFD9C4;">Santiago del Estero</p>
+        <h1>Todo lo que necesitás, <span>al mejor precio</span></h1>
+        <p>Calidad, cercanía y atención de siempre — en todas nuestras sucursales.</p>
+        <div class="cta-row">
+          <a href="#promociones" class="btn btn-orange">Ver promociones</a>
+          <a href="#sucursales" class="btn btn-outline">Nuestras sucursales</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <p class="k">Medios de pago</p>
+        <div class="payments" id="paymentsList"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="promociones">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Ofertas de la semana</p>
+        <h2 class="section-title">Promociones</h2>
+        <p class="lead">Se actualizan editando <code>assets/datos.js</code> — no hace falta tocar el diseño.</p>
+      </div>
+      <div class="promo-grid" id="promoGrid"></div>
+    </div>
+  </section>
+
+  <section id="catalogo" class="alt-bg">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Todo en un solo lugar</p>
+        <h2 class="section-title">Catálogo por categoría</h2>
+        <p class="lead">Enlazá cada categoría a tu catálogo online cuando esté listo.</p>
+      </div>
+      <div class="cat-grid" id="catGrid"></div>
+    </div>
+  </section>
+
+  <section id="sucursales">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Encontranos</p>
+        <h2 class="section-title">Nuestras sucursales</h2>
+      </div>
+      <div class="branch-grid" id="branchGrid"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contacto">
+  <div class="container footer-grid">
+    <div>
+      <div class="brand" style="margin-bottom:14px;"><img src="assets/logo.png" alt="Nuevo Oriente Supermercados" style="height:64px;"></div>
+      <p>Todo lo que necesitás para tu día, al mejor precio.</p>
+      <div class="social-row" id="socialRow"></div>
+    </div>
+    <div>
+      <h3>Enlaces</h3>
+      <ul>
+        <li><a href="#promociones">Promociones</a></li>
+        <li><a href="#catalogo">Catálogo</a></li>
+        <li><a href="#sucursales">Sucursales</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Contacto</h3>
+      <ul id="contactList"></ul>
+    </div>
+  </div>
+  <div class="bottom-bar" id="bottomBar"></div>
+</footer>
+
+<a class="wa-float" id="waFloat" href="#" aria-label="Escribinos por WhatsApp" target="_blank" rel="noopener">💬</a>
+
+<script src="assets/datos.js"></script>
+<script>
+  // ---- menú móvil ----
+  const toggle = document.getElementById('navToggle');
+  const list = document.getElementById('navList');
+  toggle.addEventListener('click', () => {
+    const open = list.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  list.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    list.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  const fmt = n => n ? '$' + n.toLocaleString('es-AR') : '';
+
+  // ---- Medios de pago ----
+  document.getElementById('paymentsList').innerHTML = DATOS.mediosDePago.map(p => `
+    <div class="payment-chip"><span>${p.plan}</span><span class="d">${p.detalle}</span></div>
+  `).join('');
+
+  // ---- Promociones ----
+  document.getElementById('promoGrid').innerHTML = DATOS.promociones.map(p => `
+    <div class="ticket">
+      <p class="tag-cat">${p.categoria}</p>
+      <h3>${p.producto}</h3>
+      <div class="price-row">
+        ${p.precioAntes ? `<span class="old-price mono">${fmt(p.precioAntes)}</span>` : ''}
+        <span class="new-price">${p.precioAhora ? fmt(p.precioAhora) : 'Consultar'}</span>
+      </div>
+      <p class="valid">${p.vigencia}</p>
+    </div>
+  `).join('') + (DATOS.promociones.every(p => !p.precioAhora) ? '<p class="empty-note">Estas son promos de ejemplo. Cargá las reales en assets/datos.js → promociones.</p>' : '');
+
+  // ---- Catálogo ----
+  document.getElementById('catGrid').innerHTML = DATOS.categorias.map(c => `
+    <div class="cat-card">
+      <div class="emoji">${c.emoji}</div>
+      <h3>${c.nombre}</h3>
+      <p>${c.desc}</p>
+      <a href="${c.link}" class="link">Ver productos →</a>
+    </div>
+  `).join('');
+
+  // ---- Sucursales ----
+  document.getElementById('branchGrid').innerHTML = DATOS.sucursales.map(s => `
+    <div class="branch-card">
+      <div class="strip"></div>
+      <div class="body">
+        <h3>${s.nombre}</h3>
+        <div class="row">📍 <span>${s.direccion}</span></div>
+        <div class="row">📞 <span>${s.telefono}</span></div>
+        <div class="row">🕒 <span>${s.horario}</span></div>
+      </div>
+    </div>
+  `).join('');
+
+  // ---- Contacto / footer ----
+  const n = DATOS.negocio;
+  document.getElementById('contactList').innerHTML = `
+    <li>📞 ${n.telefonoTexto}</li>
+    <li>✉️ ${n.email}</li>
+  `;
+  document.getElementById('socialRow').innerHTML = `
+    <a href="${n.instagram}" target="_blank" rel="noopener" aria-label="Instagram">ig</a>
+    <a href="${n.facebook}" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+  `;
+  document.getElementById('bottomBar').textContent = `© ${new Date().getFullYear()} ${n.nombre}. Todos los derechos reservados.`;
+  document.getElementById('waFloat').href = `https://wa.me/${n.telefonoWsp1}`;
+</script>
+
+</body>
+</html>
