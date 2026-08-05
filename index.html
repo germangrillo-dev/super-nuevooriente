@@ -160,9 +160,14 @@
     background:rgba(255,255,255,.92);color:var(--green-deep);border-radius:8px;
     padding:10px 14px;display:flex;justify-content:space-between;align-items:center;font-size:.88rem;font-weight:700;gap:10px;
   }
-  .payment-chip .left{display:flex;align-items:center;gap:10px;}
-  .payment-chip img{height:22px;width:auto;max-width:70px;object-fit:contain;}
   .payment-chip span.d{font-weight:500;color:#3F4A3D;}
+  .payment-flyer{
+    background:rgba(255,255,255,.95);border-radius:10px;overflow:hidden;
+  }
+  .payment-flyer img{width:100%;display:block;background:#fff;object-fit:contain;max-height:220px;}
+  .payment-flyer .cap{padding:10px 14px;display:flex;justify-content:space-between;align-items:center;gap:10px;}
+  .payment-flyer .cap strong{color:var(--green-deep);font-size:.9rem;}
+  .payment-flyer .cap span{font-size:.82rem;color:#4B5346;font-weight:500;}
 
   /* ---------- SECTION GENERIC ---------- */
   section{padding:68px 0;}
@@ -405,15 +410,24 @@ async function iniciarSitio(){
   })();
 
   // ---- Medios de pago ----
-  document.getElementById('paymentsList').innerHTML = DATOS.mediosDePago.map(p => `
-    <div class="payment-chip">
-      <span class="left">
-        ${p.imagen ? `<img src="${p.imagen}" alt="${p.plan || ''}">` : ''}
+  document.getElementById('paymentsList').innerHTML = DATOS.mediosDePago.map(p => {
+    if (p.imagen) {
+      return `
+        <div class="payment-flyer">
+          <img src="${p.imagen}" alt="${p.plan || 'Medio de pago'}">
+          ${(p.plan || p.detalle) ? `
+            <div class="cap">
+              <strong>${p.plan || ''}</strong>
+              <span>${p.detalle || ''}</span>
+            </div>` : ''}
+        </div>`;
+    }
+    return `
+      <div class="payment-chip">
         <span>${p.plan || ''}</span>
-      </span>
-      <span class="d">${p.detalle || ''}</span>
-    </div>
-  `).join('');
+        <span class="d">${p.detalle || ''}</span>
+      </div>`;
+  }).join('');
 
   // ---- Promociones ----
   document.getElementById('promoGrid').innerHTML = DATOS.promociones.map(p => {
