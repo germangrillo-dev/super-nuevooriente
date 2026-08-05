@@ -33,12 +33,12 @@
       "imagen": "/assets/uploads/naranja.jfif"
     },
     {
-      "plan": "Tarjeta Naranja",
+      "plan": "Mercado Pago 10%",
       "detalle": "1 y 4 cuotas sin interés",
       "imagen": "/assets/uploads/mercado-pago.png"
     },
     {
-      "plan": "Sucrédito Única",
+      "plan": "Visa 1,3,6 Cuotas sin Interés",
       "detalle": "3 cuotas sin interés",
       "imagen": "/assets/uploads/visa.png"
     }
