@@ -29,15 +29,18 @@
   "mediosDePago": [
     {
       "plan": "Plan Z",
-      "detalle": "4 cuotas sin interés"
+      "detalle": "4 cuotas sin interés",
+      "imagen": "/assets/uploads/naranja.jfif"
     },
     {
       "plan": "Tarjeta Naranja",
-      "detalle": "1 y 4 cuotas sin interés"
+      "detalle": "1 y 4 cuotas sin interés",
+      "imagen": "/assets/uploads/mercado-pago.png"
     },
     {
       "plan": "Sucrédito Única",
-      "detalle": "3 cuotas sin interés"
+      "detalle": "3 cuotas sin interés",
+      "imagen": "/assets/uploads/visa.png"
     }
   ],
   "sucursales": [
