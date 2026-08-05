@@ -42,7 +42,8 @@ collections:
             widget: "list"
             summary: "{{fields.plan}} — {{fields.detalle}}"
             fields:
-              - { label: "Nombre del plan / tarjeta", name: "plan", widget: "string" }
+              - { label: "Logo (opcional)", name: "imagen", widget: "image", required: false, hint: "Logo de la tarjeta o plan de pago." }
+              - { label: "Nombre del plan / tarjeta", name: "plan", widget: "string", required: false }
               - { label: "Detalle (ej: 3 cuotas sin interés)", name: "detalle", widget: "string" }
 
           - label: "Sucursales"
